@@ -32,12 +32,12 @@ module.exports = {
         }
       },
       {
-        test: /\.css$/,
-        use: [ 'style-loader', 'css-loader' ]
+        test: /\.(css|scss)$/,
+        loader: 'style-loader!css-loader!sass-loader'
       }
     ]
   },
-  resolve: {
+  resolve: {  
     alias: {
       'vue$': 'vue/dist/vue.esm.js'
     }
