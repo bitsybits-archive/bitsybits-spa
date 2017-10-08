@@ -53,15 +53,83 @@
 
       <div class="off-canvas-content">
         <div class="content">
-          <h4>Lorem ipsum</h4>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent risus leo, dictum in vehicula sit amet, feugiat tempus tellus. Duis quis sodales risus. Etiam euismod ornare consequat.</p>
-          <p>Climb leg rub face on everything give attitude nap all day for under the bed. Chase mice attack feet but rub face on everything hopped up on goofballs.</p>
-          <h4>Cupcake ipsum</h4>
-          <p>Jelly-o sesame snaps halvah croissant oat cake cookie. Cheesecake bear claw topping. Chupa chups apple pie carrot cake chocolate cake caramels.</p>
-          <p>De braaaiiiins apocalypsi gorger omero prefrontal cortex undead survivor fornix dictum mauris. Hi brains mindless mortuis limbic cortex soulless creaturas optic nerve.</p>
-          <h4>Candy ipsum</h4>
-          <p>Efficiently unleash cross-media information without cross-media value. Quickly maximize timely deliverables for real-time schemas. Dramatically maintain clicks-and-mortar.</p>
-          <p>Caerphilly swiss fromage frais. Brie cheese and wine fromage frais chalk and cheese danish fontina smelly cheese who moved my cheese cow.</p>
+
+          <div class="columns">
+            <div class="column col-3 col-xs-12">
+              <div class="panel">
+                <div class="panel-header text-center">
+                  <div class="panel-title h5 mt-10">Bruce Banner</div>
+                  <div class="panel-subtitle">THE HULK</div>
+                </div>
+                <nav class="panel-nav">
+                  <ul class="tab tab-block">
+                    <li class="tab-item active">
+                      <a href="#panels">
+                        Profile
+                      </a>
+                    </li>
+                    <li class="tab-item">
+                      <a href="#panels">
+                        Files
+                      </a>
+                    </li>
+                    <li class="tab-item">
+                      <a href="#panels">
+                        Tasks
+                      </a>
+                    </li>
+                  </ul>
+                </nav>
+                <div class="panel-body">
+                  <div class="tile tile-centered">
+                    <div class="tile-content">
+                      <div class="tile-title">E-mail</div>
+                      <div class="tile-subtitle">bruce.banner@hulk.com</div>
+                    </div>
+                    <div class="tile-action">
+                      <button class="btn btn-link btn-action btn-lg"><i class="icon icon-edit"></i></button>
+                    </div>
+                  </div>
+                  <div class="tile tile-centered">
+                    <div class="tile-content">
+                      <div class="tile-title">Skype</div>
+                      <div class="tile-subtitle">bruce.banner</div>
+                    </div>
+                    <div class="tile-action">
+                      <button class="btn btn-link btn-action btn-lg"><i class="icon icon-edit"></i></button>
+                    </div>
+                  </div>
+                  <div class="tile tile-centered">
+                    <div class="tile-content">
+                      <div class="tile-title">Location</div>
+                      <div class="tile-subtitle">Dayton, Ohio</div>
+                    </div>
+                    <div class="tile-action">
+                      <button class="btn btn-link btn-action btn-lg"><i class="icon icon-edit"></i></button>
+                    </div>
+                  </div>
+                </div>
+                <div class="panel-footer">
+                  <button class="btn btn-primary btn-block">Save</button>
+                </div>
+              </div>
+            </div>
+            <div class="column col-9 col-xs-12">
+              <div class="panel">
+                <div class="panel-header">
+                  <div class="panel-title h5">Comments</div>
+                  <div class="h6">Comments</div>
+                </div>
+                <div class="panel-body">
+                  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam semper diam at erat pulvinar, at pulvinar felis blandit. Vestibulum volutpat tellus diam, consequat gravida libero rhoncus ut. Morbi maximus, leo sit amet vehicula eleifend, nunc dui porta orci, quis semper odio felis ut quam.</p>
+                </div>
+                <div class="panel-footer">
+                  
+                </div>
+              </div>
+            </div>
+          </div>
+
         </div>
       </div>
     </div>
@@ -102,6 +170,7 @@ export default {
 
 .top-navbar {
   line-height: 0;
+  background: #f8f9fa;
 }
 
 .navbar {
@@ -110,6 +179,10 @@ export default {
 
 .navbar .navbar-sidebar {
   display: none;
+}
+
+.panel .tile {
+    margin: .75rem 0;
 }
 
 @media (max-width: 960px) {
