@@ -87,7 +87,9 @@
                       <div class="tile-subtitle">bruce.banner@hulk.com</div>
                     </div>
                     <div class="tile-action">
-                      <button class="btn btn-link btn-action btn-lg"><i class="icon icon-edit"></i></button>
+                      <button class="btn btn-link btn-action btn-lg">
+                        <i class="icon icon-edit"></i>
+                      </button>
                     </div>
                   </div>
                   <div class="tile tile-centered">
@@ -96,7 +98,9 @@
                       <div class="tile-subtitle">bruce.banner</div>
                     </div>
                     <div class="tile-action">
-                      <button class="btn btn-link btn-action btn-lg"><i class="icon icon-edit"></i></button>
+                      <button class="btn btn-link btn-action btn-lg">
+                        <i class="icon icon-edit"></i>
+                      </button>
                     </div>
                   </div>
                   <div class="tile tile-centered">
@@ -105,7 +109,9 @@
                       <div class="tile-subtitle">Dayton, Ohio</div>
                     </div>
                     <div class="tile-action">
-                      <button class="btn btn-link btn-action btn-lg"><i class="icon icon-edit"></i></button>
+                      <button class="btn btn-link btn-action btn-lg">
+                        <i class="icon icon-edit"></i>
+                      </button>
                     </div>
                   </div>
                 </div>
@@ -121,10 +127,32 @@
                   <div class="h6">Comments</div>
                 </div>
                 <div class="panel-body">
-                  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam semper diam at erat pulvinar, at pulvinar felis blandit. Vestibulum volutpat tellus diam, consequat gravida libero rhoncus ut. Morbi maximus, leo sit amet vehicula eleifend, nunc dui porta orci, quis semper odio felis ut quam.</p>
+                  <pre id="editor">
+(defun prompt-for-cd ()
+   "Prompts
+    for CD"
+   (prompt-read "Title" 1.53 1 2/4 1.7 1.7e0 2.9E-4 +42 -7 #b001 #b001/100 #o777 #O777 #xabc55 #c(0 -5.6))
+   (prompt-read "Artist" &rest)
+   (or (parse-integer (prompt-read "Rating") :junk-allowed t) 0)
+  (if x (format t "yes") (format t "no" nil) ;and here comment
+  ) 0xFFLL -23ull
+  ;; second line comment
+  '(+ 1 2)
+  (defvar *lines*)                ; list of all lines
+  (position-if-not #'sys::whitespacep line :start beg))
+  (quote (privet 1 2 3))
+  '(hello world)
+  (* 5 7)
+  (1 2 34 5)
+  (:use "aaaa")
+  (let ((x 10) (y 20))
+    (print (+ x y))
+  ) LAmbDa
+
+  "asdad\0eqweqe"</pre>
                 </div>
                 <div class="panel-footer">
-                  
+
                 </div>
               </div>
             </div>
@@ -144,6 +172,13 @@ export default {
       msg: 'Welcome to Your Vue.js App'
     }
   },
+
+  mounted: function() {
+    var editor = ace.edit("editor");
+    editor.setTheme("ace/theme/tomorrow");
+    editor.session.setMode("ace/mode/lisp");
+  },
+
   methods: {
     tryProgress() {
       this.$refs['top-progress'].removeAttribute("value");
@@ -155,6 +190,12 @@ export default {
 
 <style>
 #app {}
+
+#editor {
+  position: relative;
+  height: 15rem;
+  width: 100%;
+}
 
 .off-canvas {
   top: auto;
@@ -182,7 +223,7 @@ export default {
 }
 
 .panel .tile {
-    margin: .75rem 0;
+  margin: .75rem 0;
 }
 
 @media (max-width: 960px) {
