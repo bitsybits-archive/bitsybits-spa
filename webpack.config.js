@@ -36,7 +36,10 @@ module.exports = {
       },
       {
         test: /\.(css|scss)$/,
-        loader: ExtractTextPlugin.extract(['css-loader', 'sass-loader'])
+        use: ExtractTextPlugin.extract({
+          fallback: "style-loader",
+          use: ['css-loader', 'sass-loader']
+        })
       }
     ]
   },
@@ -55,6 +58,9 @@ module.exports = {
   performance: {
     hints: false
   },
+  plugins: [
+    new ExtractTextPlugin('[name].css', { allChunks: true })
+  ],
   devtool: '#eval-source-map'
 }
 
@@ -75,9 +81,6 @@ if (process.env.NODE_ENV === 'production') {
     }),
     new webpack.LoaderOptionsPlugin({
       minimize: true
-    }),
-    new ExtractTextPlugin('[name].css', {
-        allChunks: true
     })
   ])
 }

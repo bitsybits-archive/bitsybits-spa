@@ -58,7 +58,7 @@
             <div class="column col-3 col-xs-12">
               <div class="panel">
                 <div class="panel-header text-center">
-                  <div class="panel-title h5 mt-10">Bruce Banner :)</div>
+                  <div class="panel-title h5 mt-10">Bruce Banner</div>
                   <div class="panel-subtitle">THE HULK</div>
                 </div>
                 <nav class="panel-nav">
