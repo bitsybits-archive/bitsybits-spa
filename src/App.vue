@@ -9,7 +9,6 @@
           </label>
         </section>
         <section class="navbar-section">
-          <a href="#" class="btn btn-link">Dummy</a>
           <button class="btn btn-link" @click="tryProgress">Try Progress</button>
         </section>
       </header>
@@ -22,31 +21,17 @@
 
       <div class="off-canvas-sidebar" style="overflow-y: auto;">
         <ul class="nav">
-          <li class="nav-item">
-            <a href="#">Elements</a>
-          </li>
           <li class="nav-item active">
-            <a href="#">Layout</a>
-            <ul class="nav">
-              <li class="nav-item">
-                <a href="#">Flexbox grid</a>
-              </li>
-              <li class="nav-item">
-                <a href="#">Responsive</a>
-              </li>
-              <li class="nav-item">
-                <a href="#">Navbar</a>
-              </li>
-              <li class="nav-item">
-                <a href="#">Empty states</a>
-              </li>
-            </ul>
+            <a href="#">Transactions</a>
           </li>
           <li class="nav-item">
-            <a href="#">Components</a>
+            <a href="#">Devices</a>
           </li>
           <li class="nav-item">
-            <a href="#">Utilities</a>
+            <a href="#">Settings</a>
+          </li>
+          <li class="nav-item">
+            <a href="#">Settings</a>
           </li>
         </ul>
       </div>
@@ -55,7 +40,7 @@
         <div class="content">
 
           <div class="columns">
-            <div class="column col-3 col-xs-12">
+            <div class="column col-3 col-lg-4 col-md-12 col-sm-12 col-xs-12">
               <div class="panel">
                 <div class="panel-header text-center">
                   <div class="panel-title h5 mt-10">Bruce Banner</div>
@@ -120,7 +105,7 @@
                 </div>
               </div>
             </div>
-            <div class="column col-9 col-xs-12">
+            <div class="column col-9 col-lg-8 col-md-12 col-sm-12 col-xs-12">
               <div class="panel">
                 <div class="panel-header">
                   <div class="panel-title h5">Comments</div>
