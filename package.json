@@ -13,7 +13,8 @@
     "ace-builds": "^1.2.8",
     "spectre.css": "^0.4.3",
     "vue": "^2.4.4",
-    "vue-router": "^3.0.1"
+    "vue-router": "^3.0.1",
+    "vuex": "^3.0.1"
   },
   "devDependencies": {
     "babel-core": "^6.26.0",

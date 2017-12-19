@@ -9,23 +9,7 @@
             <div class="panel-subtitle">THE HULK</div>
           </div>
           <nav class="panel-nav">
-            <ul class="tab tab-block">
-              <li class="tab-item active">
-                <a href="#panels">
-                  Profile
-                </a>
-              </li>
-              <li class="tab-item">
-                <a href="#panels">
-                  Files
-                </a>
-              </li>
-              <li class="tab-item">
-                <a href="#panels">
-                  Tasks
-                </a>
-              </li>
-            </ul>
+            <div class="panel-title h5 mt-10 text-center">Transactions</div>
           </nav>
           <div class="panel-body">
             <div class="tile tile-centered">
