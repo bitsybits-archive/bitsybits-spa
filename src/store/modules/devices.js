@@ -7,17 +7,16 @@ const devices = {
   },
   mutations: {
     addToList(state, device) {
-      state.list.push(device)
+      state.list.push(device);
     },
-    cleanList(state) {
-      state.list = [];
-    }
+    loadList(state, devices) {
+      state.list = devices;
+    },
   },
   actions: {
     fetchAll(context) {
-      context.commit('cleanList');
-      DB.devices.each(function(device){
-        context.commit('addToList', { id: device.id, name: device.name, hash: device.hash  })
+      DB.devices.toArray().then(function(devices){
+        context.commit('loadList', devices)
       })
     },
     add_new(context, new_device) {
@@ -25,11 +24,9 @@ const devices = {
         name: new_device.name,
         hash: new_device.hash
       }).then(function(device_id){
-        DB.devices.get(device_id).then(function(device){
-          context.commit('addToList', { id: device.id, name: device.name, hash: device.hash  });
-        });
-      }).catch(function() {
-        console.log("failed adding");
+        context.dispatch('fetchAll');
+      }).catch(function(error) {
+        console.log("failed adding" + error);
       })
     },
     removeDevice(context, device_id) {

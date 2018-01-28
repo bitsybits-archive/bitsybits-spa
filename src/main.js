@@ -22,5 +22,8 @@ new Vue({
   el: '#app',
   render: h => h(App),
   router: router,
-  store: store
+  store: store,
+  created(){
+    this.$store.dispatch('fetchAll');
+  }
 })

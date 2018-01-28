@@ -10,5 +10,10 @@ export const store = new Vuex.Store({
   },
   modules: {
     devices: devices
+  },
+  actions: {
+    fetchAll(context){
+      context.dispatch('devices/fetchAll');
+    }
   }
 });

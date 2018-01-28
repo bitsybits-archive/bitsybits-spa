@@ -50,7 +50,6 @@
 
       },
       deleteDevice(device_id) {
-        console.log(device_id)
         this.$store.dispatch('devices/removeDevice', device_id)
       }
     },
@@ -59,9 +58,6 @@
         return this.$store.state.devices.list
       }
     },
-    created(){
-      this.$store.dispatch('devices/fetchAll');
-    }
   }
 </script>
 <style>
