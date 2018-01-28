@@ -13,6 +13,7 @@
     "ace-builds": "^1.2.8",
     "dexie": "^2.0.1",
     "spectre.css": "^0.4.3",
+    "vee-validate": "^2.0.3",
     "vue": "^2.4.4",
     "vue-router": "^3.0.1",
     "vuex": "^3.0.1"
