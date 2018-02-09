@@ -19,7 +19,7 @@ const devices = {
         context.commit('loadList', devices)
       })
     },
-    add_new(context, new_device) {
+    addNew(context, new_device) {
       DB.devices.add({
         name: new_device.name,
         hash: new_device.hash
@@ -33,6 +33,19 @@ const devices = {
       DB.devices.delete(device_id).then(function(){
         context.dispatch('fetchAll');
       });
+    },
+    updateDevice(context, details) {
+      if (details.id === details.hash) {
+        DB.devices.update(details.id,{ name: details.name }).then(function(){
+          context.dispatch('fetchAll');
+        });
+      } else {
+        context.dispatch('removeDevice', details.id).then(function(){
+          context.dispatch('addNew', { name: details.name, hash: details.hash }).then(function(){
+            context.dispatch('fetchAll'); 
+          })
+        })
+      }
     }
   },
   getters: {}

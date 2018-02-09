@@ -20,7 +20,7 @@
     <hr />
     <div class="columns">
       <div v-for="item in list" class="column col-3">
-        <device v-bind:device="item"></device>
+        <device :device="item"></device>
       </div>
     </div>
   </div>
@@ -46,7 +46,7 @@
             .then(function(result){
               if (result) {
                 self.$store
-                    .dispatch('devices/add_new', { name: self.name, hash: self.hash })
+                    .dispatch('devices/addNew', { name: self.name, hash: self.hash })
                     .then(function(){
                       self.name = '';
                       self.hash = '';
