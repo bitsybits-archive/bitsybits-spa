@@ -1,38 +1,37 @@
 <template>
   <div class="content">
     <form class="columns" v-on:submit.prevent="addDevice">
-      <div class="form-group col-4">
-        <label class="form-label col-3" for="input-name">Name</label>
-        <input :class="{ 'col-9': true, 'form-input': true, 'is-error': errors.has('name') }" v-validate="'required'" v-model="name" name="name" type="text" id="input-name" placeholder="Name">
-        <p v-show="errors.has('name')" class="form-input-hint">{{ errors.first('name') }}</p>
-      </div>
-      <div class="form-group col-4">
-        <label class="form-label col-3" for="input-hash">Hash</label>
-        <input :class="{ 'col-9': true, 'form-input': true, 'is-error': errors.has('hash') }" v-validate="{ required: true, exist: { type: 'devices', key: 'hash' }}" v-model="hash" type="text" name="hash" id="input-hash" placeholder="Name">
-        <p v-show="errors.has('hash')" class="form-input-hint">{{ errors.first('hash') }}</p>
-      </div>
-      <div class="form-group col-4">
-        <button type="submit" class="btn btn-primary">Add new</button>
+      <div class="column col-6 col-xs-12">
+        <div class="form-group">
+          <label class="form-label" for="input-name">Name</label>
+          <input :class="{ 'form-input': true, 'is-error': errors.has('name') }" v-validate="'required'" v-model="name" name="name" type="text" id="input-name" placeholder="Device name">
+          <p v-show="errors.has('name')" class="form-input-hint">{{ errors.first('name') }}</p>
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="input-hash">Hash</label>
+          <input :class="{ 'form-input': true, 'is-error': errors.has('hash') }" v-validate="{ required: true, exist: { type: 'devices', key: 'hash' }}" v-model="hash" type="text" name="hash" id="input-hash" placeholder="Hash">
+          <p v-show="errors.has('hash')" class="form-input-hint">{{ errors.first('hash') }}</p>
+        </div>
+        <div class="form-group">
+          <button type="submit" class="btn btn-primary">Add new</button>
+        </div>
       </div>
     </form>
+    <hr />
     <div class="columns">
       <div v-for="item in list" class="column col-3">
-        <div class="card">
-          <div class="card-header">
-            <div class="card-title h5">{{ item.name }}</div>
-            <div class="card-subtitle text-gray">{{ item.hash }}</div>
-          </div>
-          <div class="card-footer">
-              <button class="btn btn-primary">Edit</button>
-              <button class="btn btn-primary" v-on:click="deleteDevice(item.hash)">Delete</button>
-            </div>
-        </div>
+        <device v-bind:device="item"></device>
       </div>
     </div>
   </div>
 </template>
 <script>
+  import Device from './devices/device.vue'
+
   export default {
+    components: {
+      'device': Device
+    },
     data: function(){
       return {
         name: '',
@@ -55,9 +54,6 @@
                     });
               }
             })
-      },
-      deleteDevice(device_id) {
-        this.$store.dispatch('devices/removeDevice', device_id)
       }
     },
     computed: {
@@ -68,4 +64,7 @@
   }
 </script>
 <style>
+.column {
+  margin-top: 8px;
+}
 </style>
