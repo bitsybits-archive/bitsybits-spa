@@ -47,8 +47,7 @@ const devices = {
         })
       }
     }
-  },
-  getters: {}
+  }
 }
 
 export default devices;
