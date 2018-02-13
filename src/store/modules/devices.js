@@ -22,30 +22,37 @@ const devices = {
     addNew(context, new_device) {
       DB.devices.add({
         name: new_device.name,
-        hash: new_device.hash
+        hash: new_device.hash,
+        active: true
       }).then(function(device_id){
         context.dispatch('fetchAll');
       }).catch(function(error) {
         console.log("failed adding" + error);
       })
     },
-    removeDevice(context, device_id) {
-      DB.devices.delete(device_id).then(function(){
+    activateDevice(context, device_id) {
+      DB.devices.update(device_id,{ active: true }).then(function(){
         context.dispatch('fetchAll');
       });
     },
+    removeDevice(context, device_id) {
+      DB.transactions.where('hash').equals(device_id).count(function(count){
+        if (count == 0) {
+          DB.devices.delete(device_id).then(function(){
+            context.dispatch('fetchAll');
+          });
+        } else {
+          DB.devices.update(device_id,{ active: false }).then(function(){
+            context.dispatch('fetchAll');
+          });
+        };
+      });
+      
+    },
     updateDevice(context, details) {
-      if (details.id === details.hash) {
-        DB.devices.update(details.id,{ name: details.name }).then(function(){
-          context.dispatch('fetchAll');
-        });
-      } else {
-        context.dispatch('removeDevice', details.id).then(function(){
-          context.dispatch('addNew', { name: details.name, hash: details.hash }).then(function(){
-            context.dispatch('fetchAll'); 
-          })
-        })
-      }
+      DB.devices.update(details.hash,{ name: details.name }).then(function(){
+        context.dispatch('fetchAll');
+      });
     }
   }
 }
