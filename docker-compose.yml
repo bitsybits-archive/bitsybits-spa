@@ -1,6 +1,7 @@
-bits-spa:
+app:
   build: "."
   ports:
     - "8080:8080"
   volumes:
-    - ".:/usr/src/app"
+    - "./:/usr/src/app"
+    - node_modules:/usr/src/app/node_modules
