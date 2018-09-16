@@ -1,24 +1,26 @@
 <template>
-  <div class="card">
-    <div class="status">{{ device.active ? 'active' : 'inactive' }}</div>
-    <div class="card-header">
-      <div v-if="!editing" class="card-title h5">{{ device.name }}</div>
-      <div v-if="editing" class="form-group">
-        <label class="form-label" for="input-name">Name</label>
-        <input class="form-input" v-model="name" name="name" type="text" id="input-name" placeholder="Device name">
+  <div  class="column col-3">
+    <div class="card">
+      <div class="status">{{ device.active ? 'active' : 'inactive' }}</div>
+      <div class="card-header">
+        <div v-if="!editing" class="card-title h5">{{ device.name }}</div>
+        <div v-if="editing" class="form-group">
+          <label class="form-label" for="input-name">Name</label>
+          <input class="form-input" v-model="name" name="name" type="text" id="input-name" placeholder="Device name">
+        </div>
+        <div class="card-subtitle text-gray">{{ device.hash }}</div>
       </div>
-      <div class="card-subtitle text-gray">{{ device.hash }}</div>
-    </div>
-    <div v-if="!editing && device.active" class="card-footer">
-      <button class="btn btn-primary" v-on:click="startEditing">Edit</button>
-      <button class="btn btn-primary" v-on:click="deleteDevice">Delete</button>
-    </div>
-    <div v-if="editing && device.active" class="card-footer">
-      <button class="btn btn-primary" v-on:click="saveEditing">Save</button>
-      <button class="btn btn-primary" v-on:click="cancelEditing">Cancel</button>
-    </div>
-    <div v-if="!device.active" class="card-footer">
-      <button class="btn btn-primary" v-on:click="activateDevice">Activate</button>
+      <div v-if="!editing && device.active" class="card-footer">
+        <button class="btn btn-primary" v-on:click="startEditing">Edit</button>
+        <button class="btn btn-primary" v-on:click="deleteDevice">Delete</button>
+      </div>
+      <div v-if="editing && device.active" class="card-footer">
+        <button class="btn btn-primary" v-on:click="saveEditing">Save</button>
+        <button class="btn btn-primary" v-on:click="cancelEditing">Cancel</button>
+      </div>
+      <div v-if="!device.active" class="card-footer">
+        <button class="btn btn-primary" v-on:click="activateDevice">Activate</button>
+      </div>
     </div>
   </div>
 </template>

@@ -62,11 +62,8 @@
           let db_data = e.target.result;
           console.log(db_data);
           IDBImportExport.clearDatabase(idb_db, function(err) {
-            console.log(!err);
-            console.log(JSON.parse(db_data));
             if(!err) {
               IDBImportExport.importFromJsonString(idb_db, db_data, function(err) {
-                file_input.type = 'text';
                 file_input.type = 'file';
                 self.$store.dispatch('fetchAll');
               });
