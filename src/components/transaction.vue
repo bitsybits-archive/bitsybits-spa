@@ -5,10 +5,12 @@
         :data-tooltip="this.transaction.status">
     </div>
     <div class="tile-content">
-      <div class="tile-title"><b>Name:</b> {{ device.name }}</div>
-      <div class="tile-subtitle"><b>Hash:</b> {{ device.hash }}</div>
-      <div class="tile-subtitle"><b>Instruction:</b></div>
-      <div class="tile-subtitle">{{ short_instruction }}</div>
+      <div class="transaction-content" v-on:click="clickHandler(transaction.id)">
+        <div class="tile-title"><b>Name:</b> {{ device.name }}</div>
+        <div class="tile-subtitle"><b>Hash:</b> {{ device.hash }}</div>
+        <div class="tile-subtitle"><b>Instruction:</b></div>
+        <div class="tile-subtitle">{{ short_instruction }}</div>
+      </div>
       <div class="tile-subtitle">
         <b>Link:</b>
         <a :href="transaction.url">transaction</a>
@@ -17,6 +19,7 @@
     <div class="tile-action">
       <button class="btn btn-link btn-action btn-lg tooltip tooltip-bottom"
               data-tooltip="Rerun"
+              v-on:click="rerunHandler(transaction.id)"
       >
         <i class="icon icon-edit"></i>
       </button>
@@ -25,7 +28,11 @@
 </template>
 <script>
   export default {
-    props: ['transaction'],
+    props: [
+      'transaction',
+      'clickHandler',
+      'rerunHandler'
+    ],
     computed: {
       device() {
         return this.$store.state.devices.list.find(device => device.hash == this.transaction.hash) || { 'name': 'no name', 'hash': this.transaction.hash, 'active': false };
@@ -37,12 +44,20 @@
         return `tile-icon-${this.transaction.status}`
       }
     },
+    methods: {
+      choose() {
+        this.clickHandler(this.transaction.id);
+      }
+    }
   }
 </script>
 <style>
   .tile {
     position: relative;
     border-bottom: 1px solid #50596c;
+  }
+  .tile .transaction-content {
+    cursor: pointer;
   }
   .tile .tile-title {
     font-size: 0.9rem;

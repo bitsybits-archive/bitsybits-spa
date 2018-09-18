@@ -7,10 +7,6 @@ import Routes from './routes'
 import DB from './store/db'
 import { store } from './store/store'
 
-import 'ace-builds/src-noconflict/ace.js'
-import 'ace-builds/src-noconflict/mode-lisp.js'
-import 'ace-builds/src-noconflict/theme-tomorrow.js'
-
 Validator.extend('exist', {
   getMessage: function(field){ return "Field already exist "},
   validate: function(value, params) {

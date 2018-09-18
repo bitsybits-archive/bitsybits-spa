@@ -14,6 +14,8 @@
             <transaction v-for="transaction_data in transactions_data"
             :key="transaction_data.id"
             :transaction="transaction_data"
+            :clickHandler="clickHandler"
+            :rerunHandler="rerunHandler"
             />
           </div>
           <div class="panel-footer">
@@ -22,19 +24,7 @@
         </div>
       </div>
       <div class="column col-9 col-lg-8 col-md-12 col-sm-12 col-xs-12">
-        <div class="panel">
-          <div class="panel-header">
-            <div class="panel-title h5">Comments</div>
-            <div class="h6">Comments</div>
-          </div>
-          <div class="panel-body">
-            <pre id="editor">
-</pre>
-          </div>
-          <div class="panel-footer">
-
-          </div>
-        </div>
+        <transaction-form :transaction="current_trasaction"/>
       </div>
     </div>
 
@@ -43,6 +33,7 @@
 
 <script>
   import Transaction from './transaction.vue'
+  import TransactionForm from './transaction_form.vue'
 
   const example_text = `
     (defun prompt-for-cd ()
@@ -68,13 +59,26 @@
 
     "asdad\0eqweqe"
   `
+  const example_text_2 = `
+    (defun prompt-for-cd ()
+    "Prompts
+    for CD"
+    (prompt-read "Title" 1.53 1 2/4 1.7 1.7e0 2.9E-4 +42 -7 #b001 #b001/100 #o777 #O777 #xabc55 #c(0 -5.6))
+  `
 
+  const example_text_3 = `
+    (if x (format t "yes") (format t "no" nil) ;and here comment
+    ) 0xFFLL -23ull
+    ;; second line comment
+  `
   export default {
     components: {
-      'transaction': Transaction
+      'transaction': Transaction,
+      'transaction-form': TransactionForm
     },
     data: function(){
       return {
+        current_trasaction: null,
         transactions_data: [
           {
             'id': 1,
@@ -86,25 +90,28 @@
           {
             'id': 2,
             'hash': 'sdfgsdfgsdfgsdfgwer23rwfe',
-            'instruction': example_text,
+            'instruction': example_text_2,
             'url': 'www.example.com',
             'status': 'warning'
           },
           {
-            'id': 2,
+            'id': 3,
             'hash': 'asdgsdfgsdfgwfasfawerfseag',
-            'instruction': example_text,
+            'instruction': example_text_3,
             'url': 'www.example.com',
             'status': 'error'
           },
         ]
       }
     },
-    mounted: function() {
-      var editor = ace.edit("editor");
-      editor.setTheme("ace/theme/tomorrow");
-      editor.session.setMode("ace/mode/lisp");
-    } 
+    methods: {
+      clickHandler(transaction_id) {
+        this.current_trasaction = this.transactions_data.find(t => t.id == transaction_id)
+      },
+      rerunHandler(transaction_id) {
+        this.current_trasaction = this.transactions_data.find(t => t.id == transaction_id)
+      }
+    }
   }
 </script>
 
