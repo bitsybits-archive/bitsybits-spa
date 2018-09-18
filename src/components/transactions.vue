@@ -19,12 +19,25 @@
             />
           </div>
           <div class="panel-footer">
-            <button class="btn btn-primary btn-block">Save</button>
+            <button class="btn btn-primary btn-block" v-on:click="newTransaction">New</button>
           </div>
         </div>
       </div>
       <div class="column col-9 col-lg-8 col-md-12 col-sm-12 col-xs-12">
-        <transaction-form :transaction="current_trasaction"/>
+        <div class="panel">
+          <div class="panel-header">
+            <div class="panel-title h5">{{ 'transaction_data.hash' }}</div>
+            <div class="h6">{{ 'transaction_data.url' }}</div>
+          </div>
+          <div class="panel-body">
+            <transaction-form :transaction="editor_instruction"
+                              :mode="editor_mode"
+            />
+          </div>
+          <div class="panel-footer">
+
+          </div>
+        </div>
       </div>
     </div>
 
@@ -78,7 +91,9 @@
     },
     data: function(){
       return {
-        current_trasaction: null,
+        editor_mode: 'new',
+        editor_instruction: null,
+        editor_device_hash: null,
         transactions_data: [
           {
             'id': 1,
@@ -106,10 +121,16 @@
     },
     methods: {
       clickHandler(transaction_id) {
-        this.current_trasaction = this.transactions_data.find(t => t.id == transaction_id)
+        this.editor_instruction = this.transactions_data.find(t => t.id == transaction_id).instruction;
+        this.editor_mode = 'view';
       },
       rerunHandler(transaction_id) {
-        this.current_trasaction = this.transactions_data.find(t => t.id == transaction_id)
+        this.editor_instruction = this.transactions_data.find(t => t.id == transaction_id).instruction;
+        this.editor_mode = 'edit';
+      },
+      newTransaction() {
+        this.editor_instruction = '';
+        this.editor_mode = 'edit';
       }
     }
   }
